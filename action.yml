@@ -1,0 +1,35 @@
+name: Rename GitHub Repository
+description: Renames a GitHub repository using the GitHub API.
+author: Louisiana Office of Technology Services
+
+inputs:
+  current-repo-name:
+    description: 'The current name of the repository to rename'
+    required: true
+  new-repo-name:
+    description: 'The new name for the repository'
+    required: true
+  token:
+    description: 'GitHub token with repository administration permissions'
+    required: true
+  owner:
+    description: 'The owner of the repository (user or organization)'
+    required: true
+
+outputs:
+  result:
+    description: 'Result of the rename attempt ("success" or "failure")'
+    value: ${{ steps.action.outputs.result }}
+  error-message:
+    description: 'Error message if the rename attempt fails'
+    value: ${{ steps.action.outputs.error-message }}
+
+runs:
+  using: composite
+  steps:
+    - name: Rename Repository
+      id: action
+      run: |
+        source ${{ github.action_path }}/action.sh
+        rename_repo "${{ inputs.current-repo-name }}" "${{ inputs.new-repo-name }}" "${{ inputs.token }}" "${{ inputs.owner }}"
+      shell: bash
