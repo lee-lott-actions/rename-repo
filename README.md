@@ -1,3 +1,4 @@
+
 # Rename GitHub Repository Action
 
 This GitHub Action renames a specified GitHub repository using the GitHub API. It returns the result of the rename attempt, indicating success or failure, along with an error message if the operation fails.
@@ -47,7 +48,7 @@ This GitHub Action renames a specified GitHub repository using the GitHub API. I
        steps:
          - name: Rename Repository
            id: rename
-           uses: la-actions/rename-repo@v1.0.0
+           uses: lee-lott-actions/rename-repo@v1.0.0
            with:
              current-repo-name: ${{ github.event.inputs.current-repo-name }}
              new-repo-name: ${{ github.event.inputs.new-repo-name }}
