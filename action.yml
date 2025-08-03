@@ -1,6 +1,6 @@
 name: Rename GitHub Repository
 description: Renames a GitHub repository using the GitHub API.
-author: Louisiana Office of Technology Services
+author: Lee Lott
 
 inputs:
   current-repo-name:
