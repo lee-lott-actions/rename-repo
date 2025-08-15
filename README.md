@@ -48,7 +48,7 @@ This GitHub Action renames a specified GitHub repository using the GitHub API. I
        steps:
          - name: Rename Repository
            id: rename
-           uses: lee-lott-actions/rename-repo@v1.0.0
+           uses: lee-lott-actions/rename-repo@v1
            with:
              current-repo-name: ${{ github.event.inputs.current-repo-name }}
              new-repo-name: ${{ github.event.inputs.new-repo-name }}
