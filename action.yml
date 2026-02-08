@@ -29,7 +29,7 @@ runs:
   steps:
     - name: Rename Repository
       id: action
+      shell: pwsh
       run: |
-        source ${{ github.action_path }}/action.sh
-        rename_repo "${{ inputs.current-repo-name }}" "${{ inputs.new-repo-name }}" "${{ inputs.token }}" "${{ inputs.owner }}"
-      shell: bash
+        . "${{ github.action_path }}/action.ps1"
+        Rename-Repository "${{ inputs.current-repo-name }}" "${{ inputs.new-repo-name }}" "${{ inputs.token }}" "${{ inputs.owner }}"
