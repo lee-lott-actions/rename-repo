@@ -27,10 +27,10 @@ function Rename-Repository {
 	$uri = "$apiBaseUrl/repos/$Owner/$CurrentRepoName"
 
 	$headers = @{
-		Authorization  = "Bearer $Token"
-		Accept         = "application/vnd.github+json"
+		Authorization = "Bearer $Token"
+		Accept = "application/vnd.github+json"
+		"X-GitHub-Api-Version" = "2026-03-10"
 		"Content-Type" = "application/json"
-		"User-Agent"   = "pwsh-action"
 	}
 
 	$body = @{ name = $NewRepoName } | ConvertTo-Json -Compress
