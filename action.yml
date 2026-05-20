@@ -32,4 +32,8 @@ runs:
       shell: pwsh
       run: |
         . "${{ github.action_path }}/action.ps1"
-        Rename-Repository "${{ inputs.current-repo-name }}" "${{ inputs.new-repo-name }}" "${{ inputs.token }}" "${{ inputs.owner }}"
+        Rename-Repository `
+          -CurrentRepoName "${{ inputs.current-repo-name }}" `
+          -NewRepoName "${{ inputs.new-repo-name }}" `
+          -Token "${{ inputs.token }}" `
+          -Owner "${{ inputs.owner }}"

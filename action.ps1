@@ -16,14 +16,11 @@ function Rename-Repository {
 		Add-Content -Path $env:GITHUB_OUTPUT -Value "error-message=Missing required parameters: current-repo-name, new-repo-name, token, and owner must be provided."
 		Add-Content -Path $env:GITHUB_OUTPUT -Value "result=failure"
 		return
-	}
-
-	Write-Host "Attempting to rename repository $Owner/$CurrentRepoName to $NewRepoName"
+	}	
 
 	# Use MOCK_API if set, otherwise default to GitHub API
 	$apiBaseUrl = $env:MOCK_API
 	if (-not $apiBaseUrl) { $apiBaseUrl = "https://api.github.com" }
-
 	$uri = "$apiBaseUrl/repos/$Owner/$CurrentRepoName"
 
 	$headers = @{
@@ -36,7 +33,8 @@ function Rename-Repository {
 	$body = @{ name = $NewRepoName } | ConvertTo-Json -Compress
 
 	try {
-		$response = Invoke-WebRequest -Uri $uri -Method Patch -Headers $headers -Body $body
+		Write-Host "Attempting to rename repository $Owner/$CurrentRepoName to $NewRepoName"
+		$response = Invoke-WebRequest -Uri $uri -Method Patch -Headers $headers -Body $body -SkipHttpErrorCheck
 
 		if ($response.StatusCode -ne 200) {
 			$errorMsg = "Error: Failed to rename repository $Owner/$CurrentRepoName. HTTP Status: $($response.StatusCode)"
